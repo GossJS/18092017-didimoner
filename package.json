@@ -1,0 +1,24 @@
+{
+  "name": "express-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel-node index.js",
+    "start": "babel-watch index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.0.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "babel-watch": "^2.0.7",
+    "jest": "^21.1.0",
+    "regenerator-runtime": "^0.11.0",
+    "zombie": "^5.0.7"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
