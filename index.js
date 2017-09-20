@@ -1,8 +1,16 @@
 import express from 'express';
-import {calc, kramer} from './helpers';
+import fs from 'fs';
+
+import {calc, kramer, updateStats, FILENAME} from './helpers';
 
 const PORT = 8080;
 const app = express()
+
+app.use((req, res, next) => {
+    updateStats();
+    
+    next();
+});
 
 app.get('/add/:a/:b', (req, res) => {
     const urlParams = req.params;
@@ -33,10 +41,13 @@ app.get('/add/:a/:b', (req, res) => {
     const urlParams = req.params;
     
     res.send(kramer(urlParams));
-});
-
-app.use((req, res) => {
-   res.sendStatus(404);
+})
+.get('/stats', (req, res) => {
+    fs.readFile(FILENAME, (err, data) =>{
+        if (err) throw err;
+        
+        res.send(String(data));
+    });
 });
 
 app.listen(PORT, function () {

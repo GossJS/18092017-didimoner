@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export function calc(a, b, operation) {
     const numA = Number(a);
     const numB = Number(b);
@@ -37,4 +39,27 @@ export function kramer(params) {
     } else {
         return 'Determinant is equal to zero! No answer.';
     }
+}
+
+export const FILENAME = 'stats.txt';
+
+export function updateStats() {
+    fs.open(FILENAME, 'a', (err, file) => {
+        if (err) throw err;
+        
+        fs.readFile(FILENAME, (err, data) => {
+            if (err) throw err;
+            
+            const numData = Number(data);
+            let value = 0;
+            
+            if (numData !== '') {
+              value = numData + 1;
+            }
+            
+            fs.writeFile(FILENAME, value, err => {
+              if (err) throw err;
+            });
+        });
+    });
 }
