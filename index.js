@@ -1,7 +1,7 @@
 import express from 'express';
 import {calc, kramer} from './helpers';
 
-const PORT = 8081;
+const PORT = 8080;
 const app = express()
 
 app.get('/add/:a/:b', (req, res) => {
